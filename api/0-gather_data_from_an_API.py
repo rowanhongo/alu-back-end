@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """
 This is a script that fetches Employee data from jsonplaceholder REST API according to the employee ID entered.
+
+This script retrieves employee data and their Todo tasks by employee ID
+and prints the completion status and titles of completed tasks.
 """
 
 import requests
