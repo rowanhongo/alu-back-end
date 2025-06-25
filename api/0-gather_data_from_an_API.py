@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+This is a script that fetches Employee data from jsonplaceholder REST API according to the employee ID entered.
+"""
 
 import requests
 
