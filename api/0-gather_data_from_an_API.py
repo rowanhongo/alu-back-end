@@ -15,28 +15,21 @@ if __name__ == "__main__":
         print("Employee ID must be an integer.")
         sys.exit(1)
 
-    # Get user info
+    # Get employee info
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     user_response = requests.get(user_url)
-    
-    if user_response.status_code != 200:
-        print("User not found.")
-        sys.exit(1)
-
     user_info = user_response.json()
-    employee_name = user_info.get("name")
+    employee_name = user_info["name"]
 
     # Get todos
     todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
     todos_response = requests.get(todos_url)
     todos = todos_response.json()
 
-    # Count completed tasks
-    completed_tasks = [task for task in todos if task.get("completed") is True]
-    total_done = len(completed_tasks)
-    total_tasks = len(todos)
+    # Filter completed tasks
+    completed_tasks = [task for task in todos if task["completed"]]
 
     # Output
-    print(f"Employee {employee_name} is done with tasks({total_done}/{total_tasks}):")
+    print(f"Employee {employee_name} is done with tasks({len(completed_tasks)}/{len(todos)}):")
     for task in completed_tasks:
-        print(f"\t {task.get('title')}")
+        print(f"\t {task['title']}")
